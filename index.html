@@ -1,24 +1,38 @@
-<input id="bus">
-<input id="ars">
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<h2>버스 ETA 확장</h2>
+
+<input id="bus" placeholder="버스 번호 (예: 9401)">
+<input id="ars" placeholder="정류장 번호 (예: 12345)">
 <button onclick="run()">조회</button>
 
+<pre id="out"></pre>
+
 <script>
-async function run(){
+async function run() {
   const bus = document.getElementById("bus").value;
   const ars = document.getElementById("ars").value;
 
   const res = await fetch(`/predict?bus=${bus}&ars=${ars}`);
   const data = await res.json();
 
-  if(data.error){
+  if (data.error) {
     document.getElementById("out").innerText = data.error;
     return;
   }
 
   document.getElementById("out").innerText =
-`1번 ${data["1번"]}분
-2번 ${data["2번"]}분
-3번 ${data["3번"]}분
-4번 ${data["4번"]}분`;
+`1번: ${data["1번"]}분
+2번: ${data["2번"]}분
+3번: ${data["3번"]}분 (추정)
+4번: ${data["4번"]}분 (추정)`
 }
 </script>
+
+</body>
+</html>
