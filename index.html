@@ -1,3 +1,24 @@
 <input id="bus">
 <input id="ars">
 <button onclick="run()">조회</button>
+
+<script>
+async function run(){
+  const bus = document.getElementById("bus").value;
+  const ars = document.getElementById("ars").value;
+
+  const res = await fetch(`/predict?bus=${bus}&ars=${ars}`);
+  const data = await res.json();
+
+  if(data.error){
+    document.getElementById("out").innerText = data.error;
+    return;
+  }
+
+  document.getElementById("out").innerText =
+`1번 ${data["1번"]}분
+2번 ${data["2번"]}분
+3번 ${data["3번"]}분
+4번 ${data["4번"]}분`;
+}
+</script>
