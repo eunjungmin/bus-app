@@ -1,0 +1,6 @@
+{
+"name": "Bus ETA",
+"short_name": "Bus",
+"start_url": "/",
+"display": "standalone"
+}
