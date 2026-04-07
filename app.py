@@ -3,8 +3,7 @@ import requests
 import xml.etree.ElementTree as ET
 import os
 
-app = Flask(**name**)
-
+app = Flask(__name__)
 API_KEY = os.getenv("API_KEY")
 
 def parse_time(txt):
